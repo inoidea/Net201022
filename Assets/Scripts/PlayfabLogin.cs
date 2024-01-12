@@ -1,44 +1,39 @@
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using UnityEngine.UI;
-using TMPro;
+using System;
 
-public class PlayfabLogin : MonoBehaviour
+public class PlayFabLogin : MonoBehaviour
 {
-    const string TITLE_ID = "F992C";
-
-    [SerializeField] private TMP_Text _connectLabel;
-    [SerializeField] private Image _connectionIndicator;
+    private const string TITLE_ID = "F992C";
+    private const string AUTH_GUID_KEY = "AUTH_GUID_KEY";
 
     void Start()
     {
         if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
             PlayFabSettings.staticSettings.TitleId = TITLE_ID;
 
-        var request = new LoginWithCustomIDRequest
-        {
-            CustomId = "Player 1",
-            CreateAccount = true,
-        };
+        var needCreation = PlayerPrefs.HasKey(AUTH_GUID_KEY);
+        var id = PlayerPrefs.GetString(AUTH_GUID_KEY, Guid.NewGuid().ToString());
 
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginError);
+        PlayFabClientAPI.LoginWithCustomID(new LoginWithCustomIDRequest
+        {
+            CustomId = id,
+            CreateAccount = !needCreation,
+        }, result =>
+        {
+            PlayerPrefs.SetString(AUTH_GUID_KEY, id);
+            OnLoginSuccess(result);
+        }, OnLoginError);
     }
 
     private void OnLoginSuccess(LoginResult result)
     {
-        _connectLabel.text = "Connected";
-        _connectionIndicator.color = Color.green;
-
         Debug.Log("Complete Login.");
     }
 
     private void OnLoginError(PlayFabError error)
     {
-        _connectLabel.text = "Not connected";
-        _connectionIndicator.color = Color.red;
-
-        var errorMessage = error.GenerateErrorReport();
-        Debug.LogError(errorMessage);
+        Debug.LogError(error.GenerateErrorReport());
     }
 }
