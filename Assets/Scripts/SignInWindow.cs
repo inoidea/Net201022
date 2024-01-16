@@ -32,7 +32,5 @@ public class SignInWindow : AccountDataWindowBase
         {
             Debug.LogError($"Fail {error.ErrorMessage}");
         });
-
-        //_loadingLabel.gameObject.SetActive(false);
     }
 }

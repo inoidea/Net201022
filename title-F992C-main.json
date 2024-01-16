@@ -1,0 +1,178 @@
+{
+  "CatalogVersion": "main",
+  "Catalog": [
+    {
+      "ItemId": "simple_box_id",
+      "ItemClass": "box",
+      "CatalogVersion": "main",
+      "DisplayName": null,
+      "Description": null,
+      "VirtualCurrencyPrices": {
+        "RM": 1
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"box\""
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [
+          "sword_id"
+        ],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": null
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "sword_id",
+      "ItemClass": "weapon",
+      "CatalogVersion": "main",
+      "DisplayName": "Sword",
+      "Description": null,
+      "VirtualCurrencyPrices": {
+        "RM": 100
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"sword",
+        "weapon\""
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "gun_id",
+      "ItemClass": "weapon",
+      "CatalogVersion": "main",
+      "DisplayName": "Gun",
+      "Description": null,
+      "VirtualCurrencyPrices": {},
+      "RealCurrencyPrices": null,
+      "Tags": [
+        "\"gun",
+        "weapon\""
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "container_key_id",
+      "ItemClass": "Key",
+      "CatalogVersion": "main",
+      "DisplayName": "Container key",
+      "Description": null,
+      "VirtualCurrencyPrices": {},
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"key\""
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "secret_container_id",
+      "ItemClass": "container",
+      "CatalogVersion": "main",
+      "DisplayName": "Secret container",
+      "Description": null,
+      "VirtualCurrencyPrices": {},
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"container\""
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": {
+        "KeyItemId": "container_key_id",
+        "ItemContents": [
+          "sword_id"
+        ],
+        "ResultTableContents": [],
+        "VirtualCurrencyContents": {
+          "SC": 300
+        }
+      },
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    }
+  ],
+  "DropTables": [
+    {
+      "TableId": "table_id",
+      "Nodes": [
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "sword_id",
+          "Weight": 10
+        },
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "simple_box_id",
+          "Weight": 1
+        }
+      ]
+    }
+  ]
+}

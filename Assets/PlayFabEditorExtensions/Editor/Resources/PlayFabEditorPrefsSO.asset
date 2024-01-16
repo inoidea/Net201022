@@ -17,7 +17,7 @@ MonoBehaviour:
   SelectedStudio: ValeskoCorp
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
-  LocalCloudScriptPath: 
+  LocalCloudScriptPath: D:/GitHub/Net201022/Assets/PlayFabEditorExtensions/Editor/Resources/.CloudScript.js
   PanelIsShown: 0
   curMainMenuIdx: 1
-  curSubMenuIdx: 0
+  curSubMenuIdx: 2
