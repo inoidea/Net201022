@@ -35,6 +35,8 @@ namespace Photon.Pun.Demo.PunBasics
 	    [SerializeField]
 	    private Slider playerHealthSlider;
 
+        [SerializeField] private Slider _playerManaSlider;
+
         PlayerManager target;
 
 		float characterControllerHeight;
@@ -79,7 +81,11 @@ namespace Photon.Pun.Demo.PunBasics
 			if (playerHealthSlider != null) {
 				playerHealthSlider.value = target.Health;
 			}
-		}
+
+			if (_playerManaSlider != null)
+				_playerManaSlider.value = target.Mana;
+
+        }
 
 		/// <summary>
 		/// MonoBehaviour method called after all Update functions have been called. This is useful to order script execution.

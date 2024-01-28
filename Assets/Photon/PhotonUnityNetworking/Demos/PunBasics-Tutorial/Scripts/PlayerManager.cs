@@ -8,6 +8,8 @@
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+//using PlayFab;
+//using PlayFab.ClientModels;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -25,6 +27,8 @@ namespace Photon.Pun.Demo.PunBasics
 
         [Tooltip("The current Health of our player")]
         public float Health = 1f;
+
+        public float Mana = 1f;
 
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
@@ -258,6 +262,7 @@ namespace Photon.Pun.Demo.PunBasics
                 if (!this.IsFiring)
                 {
                     this.IsFiring = true;
+                    Mana -= 0.1f;
                 }
             }
 
@@ -281,12 +286,14 @@ namespace Photon.Pun.Demo.PunBasics
                 // We own this player: send the others our data
                 stream.SendNext(this.IsFiring);
                 stream.SendNext(this.Health);
+                stream.SendNext(Mana);
             }
             else
             {
                 // Network player, receive data
                 this.IsFiring = (bool)stream.ReceiveNext();
                 this.Health = (float)stream.ReceiveNext();
+                Mana = (float)stream.ReceiveNext();
             }
         }
 
