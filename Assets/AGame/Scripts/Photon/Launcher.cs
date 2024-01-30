@@ -1,10 +1,10 @@
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using System.Collections.Generic;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
+    public CharacterModel characterModel;
+
     [SerializeField] private ServerSettings _serverSettings;
     [SerializeField] private Transform _placeForUI;
     [SerializeField] private GameObject _loadingScreenPrefab;
@@ -41,6 +41,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         loadingScreenView.SetActive(false);
         lobbyView.SetActive(true);
         roomView.SetActive(false);
+
+        if (lobbyView.TryGetComponent(out LobbyView view))
+            view.GetCharacters();
 
         Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} Joined Lobby");
     }
