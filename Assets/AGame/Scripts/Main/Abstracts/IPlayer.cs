@@ -1,4 +1,4 @@
-﻿public interface IPlayer : IPlayerSkills
+﻿public interface IPlayer
 {
     
 }

@@ -2,14 +2,11 @@ using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using PlayFab;
 using PlayFab.ClientModels;
-using System.Collections.Generic;
-using System;
-using UniRx;
 using UnityEngine;
 
-public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPlayer, IDisposable
+public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
-    const string USER_DATA_HEALTH = "health";
+    //const string USER_DATA_HEALTH = "health";
 
     public static GameObject LocalPlayerInstance;
 
@@ -18,13 +15,6 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPla
     bool IsFiring;
     private bool leavingRoom;
 
-    private List<IDisposable> _disposables = new();
-
-    //public ReactiveProperty<bool> BoostEffectExists { get; set; }
-    //public ReactiveProperty<bool> InvulnEffectExists { get; set; }
-    //public ReactiveProperty<bool> SlowdownEffectExists { get; set; }
-    //public ReactiveProperty<bool> StunEffectExists { get; set; }
-
     public void Awake()
     {
         if (photonView.IsMine)
@@ -32,10 +22,7 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPla
             LocalPlayerInstance = gameObject;
         }
 
-        //BoostEffectExists = new ReactiveProperty<bool>(false);
-
         DontDestroyOnLoad(gameObject);
-        Subscribes();
     }
 
     public void Start()
@@ -65,29 +52,22 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPla
         }
     }
 
-    private void Subscribes()
-    {
-        //_disposables.AddRange(new List<IDisposable> {
-        //    BoostEffectExists.Subscribe(flag => Debug.Log($"BoostEffectExists {flag}"))
-        //});
-    }
-
     public override void OnLeftRoom()
     {
         this.leavingRoom = false;
     }
 
-    void CalledOnLevelWasLoaded(int level)
-    {
-        // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-        if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
-        {
-            transform.position = new Vector3(0f, 5f, 0f);
-        }
+    //void CalledOnLevelWasLoaded(int level)
+    //{
+    //    // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
+    //    if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+    //    {
+    //        transform.position = new Vector3(0f, 5f, 0f);
+    //    }
 
-        GameObject _uiGo = Instantiate(this.playerUiPrefab);
-        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-    }
+    //    GameObject _uiGo = Instantiate(this.playerUiPrefab);
+    //    _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+    //}
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -111,7 +91,7 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPla
     {
         var playFabId = result.AccountInfo.PlayFabId;
 
-        GetUserData(playFabId, USER_DATA_HEALTH);
+        //GetUserData(playFabId, USER_DATA_HEALTH);
     }
 
     private void GetUserData(string playFabId, string keyData)
@@ -129,7 +109,4 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable, IPla
             //}
         }, null);
     }
-
-    public void Dispose() => _disposables.ForEach(d => d.Dispose());
-    private void OnDestroy() => Dispose();
 }

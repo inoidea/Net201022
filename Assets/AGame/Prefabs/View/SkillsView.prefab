@@ -750,6 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5314746069915111673}
   - component: {fileID: 7336930745572141199}
+  - component: {fileID: 8761964005119221998}
   m_Layer: 5
   m_Name: SkillsView
   m_TagString: Untagged
@@ -794,6 +795,19 @@ MonoBehaviour:
   _invulnerabilityBtn: {fileID: 6234857091358701105}
   _slowdownBtn: {fileID: 227365716977094486}
   _stunBtn: {fileID: 9086683123476907298}
+--- !u!114 &8761964005119221998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928844444367146023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8191bc99999ec4285f40e428e11c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillsView: {fileID: 7336930745572141199}
 --- !u!1 &5017157698846537762
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class MainPlayerAnimatorManager : MonoBehaviourPun, IMove
 {
-    const string SKILL_BUFF_BOOST = "skill_buff_boost";
-
     [SerializeField] private float _directionDampTime = 0.25f;
-    [SerializeField] private float _speed = 2f;
+    [SerializeField] private float _speed = 20f;
 
     private bool _invulnerable;
     private bool _stunned;
@@ -53,16 +51,10 @@ public class MainPlayerAnimatorManager : MonoBehaviourPun, IMove
         }
 
         // deal with movement
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        animator.SetFloat("Speed", v * Speed);
-        animator.SetFloat("Direction", h, _directionDampTime, Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(SKILL_BUFF_BOOST, out object skill);
-            Debug.Log($"Кнопка нажата {skill}");
-        }
+        animator.SetFloat("Speed", moveVertical * Speed);
+        animator.SetFloat("Direction", moveHorizontal, _directionDampTime, Time.deltaTime);
     }
 }
