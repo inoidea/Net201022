@@ -1,7 +1,7 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-public class MainPlayerAnimatorManager : MonoBehaviourPun, IMove
+public class MainPlayerAnimatorManager : MonoBehaviourPun//, IMove
 {
     [SerializeField] private float _directionDampTime = 0.25f;
     [SerializeField] private float _speed = 20f;
