@@ -51,9 +51,9 @@ public class Skill : MonoBehaviourPunCallbacks
                     default: break;
                 }
             }
-
-            PhotonNetwork.Destroy(gameObject);
         }
+
+        PhotonNetwork.Destroy(gameObject);
     }
 
     public void SetRandomSkill()

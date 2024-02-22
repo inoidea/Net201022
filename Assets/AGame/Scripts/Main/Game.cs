@@ -21,7 +21,8 @@ public class Game : MonoBehaviourPun
         if (MainPlayerManager.LocalPlayerInstance == null)
         {
             PhotonNetwork.LocalPlayer.CustomProperties.Clear();
-            PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(_playerSpawnPoint.position.x, 0, _playerSpawnPoint.position.z), Quaternion.identity, 0);
+            var player = PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(_playerSpawnPoint.position.x, 0, _playerSpawnPoint.position.z), Quaternion.identity, 0);
+            player.transform.Rotate(0, -90 ,0);
         }
         else
         {

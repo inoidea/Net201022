@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Newtonsoft.Json.Bson;
+using Photon.Pun;
 using UnityEngine;
 
 public class SkillsPresenter : MonoBehaviour
@@ -22,6 +23,7 @@ public class SkillsPresenter : MonoBehaviour
         _skillsView.StunBtn.onClick.AddListener(Stun);
 
         SetAllSkillsVisibility(false);
+        HideSkillTooltip();
     }
 
     private void Update()
@@ -161,4 +163,13 @@ public class SkillsPresenter : MonoBehaviour
         _skillsView.ChangeButtonImageAlpha(_skillsView.SlowdownBtn, visible ? 1 : _lowAlpha);
     public void ChangeStunVisible(bool visible) =>
         _skillsView.ChangeButtonImageAlpha(_skillsView.StunBtn, visible ? 1 : _lowAlpha);
+
+    public void SetSkillTooltip(string text) 
+    {
+        _skillsView.SkillTooltipGO.SetActive(true);
+        _skillsView.SkillTooltip.text = text; 
+    }
+
+    public void HideSkillTooltip() => 
+        _skillsView.SkillTooltipGO.SetActive(false);
 }

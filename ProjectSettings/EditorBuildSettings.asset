@@ -9,28 +9,9 @@ EditorBuildSettings:
     path: Assets/AGame/Scenes/PlayFabLogin.unity
     guid: 78edbcf089133d14dab4dc70fbd857cb
   - enabled: 1
-    path: Assets/AGame/Scenes/Game.unity
-    guid: dea99bc219ef6254c8afaddf380bf82d
-  - enabled: 1
     path: Assets/AGame/Scenes/PhotonLobby.unity
     guid: f26e170cda218d740a6672ed0b098cf1
   - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Launcher.unity
-    guid: bff77b01b50254edbb6edeeaba5ae8b3
-  - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 1.unity
-    guid: 9b8561c6e396849a5ba48c3eb9524049
-  - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 2.unity
-    guid: 764428c63577f4580af4ce54ca9f4b1b
-  - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 3.unity
-    guid: e07afcca5bf1a41f5bd28f498656b7b8
-  - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 4.unity
-    guid: e7a7f9734636d415ca84ef3aaf7680f6
+    path: Assets/AGame/Scenes/Game.unity
+    guid: dea99bc219ef6254c8afaddf380bf82d
   m_configObjects: {}
