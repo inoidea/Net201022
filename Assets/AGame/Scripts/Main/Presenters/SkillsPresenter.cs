@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class SkillsPresenter : MonoBehaviour
 {
-    private SkillsView _skillsView;
-    private MainPlayerAnimatorManager _animatorManager;
-    private float _lowAlpha = 0.3f;
+    [SerializeField] private TimerPool _timerPool;
 
-    public MainPlayerAnimatorManager AnimatorManager { get { return _animatorManager; } set { _animatorManager = value; } }
+    private SkillsView _skillsView;
+    private float _skillDuration = 7f;
+    private IMove _move;
+    private float _lowAlpha = 0.3f;
+    
+    public IMove Move { get { return _move; } set { _move = value; } }
 
     private void Awake()
     {
@@ -42,10 +45,15 @@ public class SkillsPresenter : MonoBehaviour
         skillProps.TryGetValue(Constants.SKILL_BUFF_BOOST, out object skillAvailable);
         var isAvailable = (bool)skillAvailable;
 
-        Debug.Log($"Доступно умение SpeedUp {skillAvailable}");
-
         if (isAvailable)
-            _animatorManager.Speed = 1;
+        {
+            ITimer timer = _timerPool.CreateCallBackTimer("Boost");
+
+            var prevSpeed = _move.Speed;
+            _move.Speed = prevSpeed * 2;
+            _move.Invulnerable = true;
+            _timerPool.RunTimer(timer, _skillDuration, () => { _move.Speed = prevSpeed; _move.Invulnerable = false; });
+        }
 
         ChangeBoostVisible(false);
 
@@ -63,7 +71,9 @@ public class SkillsPresenter : MonoBehaviour
 
         if (isAvailable)
         {
-            
+            ITimer timer = _timerPool.CreateCallBackTimer("Invulnerability");
+            _move.Invulnerable = true;
+            _timerPool.RunTimer(timer, _skillDuration, () => { _move.Invulnerable = false; });
         }
 
         ChangeInvulnerabilityVisible(false);
@@ -81,7 +91,9 @@ public class SkillsPresenter : MonoBehaviour
         Debug.Log($"Доступно умение Slowdown {skillAvailable}");
 
         if (isAvailable)
-            _animatorManager.Speed = 0.2f;
+        {
+            SlowdownPlayers(10);
+        }
 
         ChangeSlowdownVisible(false);
 
@@ -99,12 +111,38 @@ public class SkillsPresenter : MonoBehaviour
 
         if (isAvailable)
         {
+            SlowdownPlayers(10, 0);
         }
 
         ChangeStunVisible(false);
 
         skillProps[Constants.SKILL_DEBUFF_STUN] = false;
         PhotonNetwork.LocalPlayer.SetCustomProperties(skillProps);
+    }
+
+    private void SlowdownPlayers(float radius, float speed = -1)
+    {
+        if (!_move.PlayerTransform) return;
+
+        var currentPlayerName = _move.PlayerTransform.name;
+        Collider[] colliders = Physics.OverlapSphere(_move.PlayerTransform.position, radius);
+
+        foreach (Collider hit in colliders)
+        {
+            if (hit.TryGetComponent(out IMove playerMove))
+            {
+                var playerName = playerMove.PlayerTransform.name;
+
+                if (playerName != currentPlayerName)
+                {
+                    ITimer timer = _timerPool.CreateCallBackTimer($"Slowdown {playerName}");
+
+                    var prevSpeed = playerMove.Speed;
+                    playerMove.Speed = (speed == -1) ? prevSpeed / 2 : speed;
+                    _timerPool.RunTimer(timer, _skillDuration, () => { playerMove.Speed = prevSpeed; });
+                }
+            }
+        }
     }
 
     private void SetAllSkillsVisibility(bool visible)
@@ -115,23 +153,12 @@ public class SkillsPresenter : MonoBehaviour
         ChangeStunVisible(false);
     }
 
-    public void ChangeBoostVisible(bool visible)
-    {
+    public void ChangeBoostVisible(bool visible) =>
         _skillsView.ChangeButtonImageAlpha(_skillsView.BoostBtn, visible ? 1 : _lowAlpha);
-    }
-
-    public void ChangeInvulnerabilityVisible(bool visible)
-    {
+    public void ChangeInvulnerabilityVisible(bool visible) =>
         _skillsView.ChangeButtonImageAlpha(_skillsView.InvulnerabilityBtn, visible ? 1 : _lowAlpha);
-    }
-
-    public void ChangeSlowdownVisible(bool visible)
-    {
+    public void ChangeSlowdownVisible(bool visible) =>
         _skillsView.ChangeButtonImageAlpha(_skillsView.SlowdownBtn, visible ? 1 : _lowAlpha);
-    }
-
-    public void ChangeStunVisible(bool visible)
-    {
+    public void ChangeStunVisible(bool visible) =>
         _skillsView.ChangeButtonImageAlpha(_skillsView.StunBtn, visible ? 1 : _lowAlpha);
-    }
 }

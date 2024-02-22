@@ -20,7 +20,8 @@ public class Game : MonoBehaviourPun
     {
         if (MainPlayerManager.LocalPlayerInstance == null)
         {
-            PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(_playerSpawnPoint.position.x, 1, _playerSpawnPoint.position.z), Quaternion.identity, 0);
+            PhotonNetwork.LocalPlayer.CustomProperties.Clear();
+            PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(_playerSpawnPoint.position.x, 0, _playerSpawnPoint.position.z), Quaternion.identity, 0);
         }
         else
         {

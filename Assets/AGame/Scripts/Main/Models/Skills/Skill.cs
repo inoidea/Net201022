@@ -9,14 +9,11 @@ public class Skill : MonoBehaviourPunCallbacks
     private SkillTypes _type;
 
     public SkillTypes Type => _type;
-    //public SkillsPresenter SkillsPresenter { get { return _skillsPresenter; } set { _skillsPresenter = value; } }
 
     private void Awake()
     {
         SetRandomSkill();
-        //_type = SkillTypes.Boost;
-
-        SetCustomProperties();
+        SetPlayerCustomProperties();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +24,7 @@ public class Skill : MonoBehaviourPunCallbacks
             {
                 var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
 
-                _skillsPresenter.AnimatorManager = other.GetComponent<MainPlayerAnimatorManager>();
+                _skillsPresenter.Move = other.GetComponent<IMove>();
 
                 switch (_type)
                 {
@@ -65,11 +62,13 @@ public class Skill : MonoBehaviourPunCallbacks
         _type = (SkillTypes)effectIndex;
     }
 
-    private void SetCustomProperties()
+    private void SetPlayerCustomProperties()
     {
-        PhotonNetwork.LocalPlayer.CustomProperties.Add(Constants.SKILL_BUFF_BOOST, false);
-        PhotonNetwork.LocalPlayer.CustomProperties.Add(Constants.SKILL_BUFF_INVULNERABILITY, false);
-        PhotonNetwork.LocalPlayer.CustomProperties.Add(Constants.SKILL_DEBUFF_SLOWDOWN, false);
-        PhotonNetwork.LocalPlayer.CustomProperties.Add(Constants.SKILL_DEBUFF_STUN, false);
+        var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
+
+        skillProps.TryAdd(Constants.SKILL_BUFF_BOOST, false);
+        skillProps.TryAdd(Constants.SKILL_BUFF_INVULNERABILITY, false);
+        skillProps.TryAdd(Constants.SKILL_DEBUFF_SLOWDOWN, false);
+        skillProps.TryAdd(Constants.SKILL_DEBUFF_STUN, false);
     }
 }

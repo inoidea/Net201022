@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (7)
@@ -439,6 +443,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (10)
@@ -1209,6 +1217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (8)
@@ -1420,6 +1432,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (11)
@@ -1681,6 +1697,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (6)
@@ -2373,6 +2393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (9)
@@ -2543,6 +2567,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8761964005119221998, guid: dea7896fe7d01e44192afaa18434a5f5, type: 3}
+      propertyPath: _timerPool
+      value: 
+      objectReference: {fileID: 1572000775}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea7896fe7d01e44192afaa18434a5f5, type: 3}
 --- !u!224 &1185171309 stripped
@@ -2550,6 +2578,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5314746069915111673, guid: dea7896fe7d01e44192afaa18434a5f5, type: 3}
   m_PrefabInstance: {fileID: 1185171308}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1185171310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8761964005119221998, guid: dea7896fe7d01e44192afaa18434a5f5, type: 3}
+  m_PrefabInstance: {fileID: 1185171308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8191bc99999ec4285f40e428e11c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1230261273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2677,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (5)
@@ -2902,6 +2945,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (14)
@@ -3007,6 +3054,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (12)
@@ -3254,6 +3305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1572000772}
   - component: {fileID: 1572000771}
+  - component: {fileID: 1572000775}
   - component: {fileID: 1572000774}
   - component: {fileID: 1572000773}
   m_Layer: 0
@@ -3278,7 +3330,7 @@ MonoBehaviour:
   _containerForUI: {fileID: 736979879}
   _skillsView: {fileID: 7336930745572141199, guid: dea7896fe7d01e44192afaa18434a5f5, type: 3}
   _playerSpawnPoint: {fileID: 1982046237}
-  _playerPrefab: {fileID: 100030, guid: 6959565b0e720d642b1998323cad9284, type: 3}
+  _playerPrefab: {fileID: 1968583919225113155, guid: f0487e854b6f96d40a8bd4a1248007f5, type: 3}
   _skillSpawnPoints: []
   _skillPrefab: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
 --- !u!4 &1572000772
@@ -3335,6 +3387,18 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1572000775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572000770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c74893812952fc429456ff2bd2715b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704558138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,6 +3651,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967208905140876391, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
+      propertyPath: _skillsPresenter
+      value: 
+      objectReference: {fileID: 1185171310}
     - target: {fileID: 8967208905140876392, guid: 208a3bfc2ca971f49ae0cf9295eeaad4, type: 3}
       propertyPath: m_Name
       value: Skill (13)
