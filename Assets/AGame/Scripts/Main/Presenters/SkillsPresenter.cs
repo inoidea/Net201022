@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Bson;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class SkillsPresenter : MonoBehaviour
@@ -45,7 +44,9 @@ public class SkillsPresenter : MonoBehaviour
     {
         var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
         skillProps.TryGetValue(Constants.SKILL_BUFF_BOOST, out object skillAvailable);
-        var isAvailable = (bool)skillAvailable;
+        var isAvailable = (skillAvailable != null) ? (bool)skillAvailable : false;
+
+        Debug.Log($"Доступно умение Boost {skillAvailable}");
 
         if (isAvailable)
         {
@@ -67,7 +68,7 @@ public class SkillsPresenter : MonoBehaviour
     {
         var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
         skillProps.TryGetValue(Constants.SKILL_BUFF_INVULNERABILITY, out object skillAvailable);
-        var isAvailable = (bool)skillAvailable;
+        var isAvailable = (skillAvailable != null) ? (bool)skillAvailable : false;
 
         Debug.Log($"Доступно умение Invulnerability {skillAvailable}");
 
@@ -107,7 +108,7 @@ public class SkillsPresenter : MonoBehaviour
     {
         var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
         skillProps.TryGetValue(Constants.SKILL_DEBUFF_STUN, out object skillAvailable);
-        var isAvailable = (bool)skillAvailable;
+        var isAvailable = (skillAvailable != null) ? (bool)skillAvailable : false;
 
         Debug.Log($"Доступно умение Stun {skillAvailable}");
 
@@ -133,6 +134,8 @@ public class SkillsPresenter : MonoBehaviour
         {
             if (hit.TryGetComponent(out IMove playerMove))
             {
+                Debug.Log(playerMove);
+
                 var playerName = playerMove.PlayerTransform.name;
 
                 if (playerName != currentPlayerName)

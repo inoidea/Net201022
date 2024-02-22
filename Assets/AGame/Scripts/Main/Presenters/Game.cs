@@ -16,13 +16,15 @@ public class Game : MonoBehaviourPun
     [SerializeField] private List<Transform> _skillSpawnPoints;
     [SerializeField] private GameObject _skillPrefab;
 
+    [SerializeField] private List<Transform> _checkPoints;
+
     void Start()
     {
         if (MainPlayerManager.LocalPlayerInstance == null)
         {
-            PhotonNetwork.LocalPlayer.CustomProperties.Clear();
             var player = PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(_playerSpawnPoint.position.x, 0, _playerSpawnPoint.position.z), Quaternion.identity, 0);
             player.transform.Rotate(0, -90 ,0);
+            player.name = PhotonNetwork.LocalPlayer.NickName;
         }
         else
         {
@@ -43,5 +45,10 @@ public class Game : MonoBehaviourPun
         //        skill.SkillsPresenter = skillsPresenter;
         //    }
         ////}
+    }
+
+    private void Update()
+    {
+        
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+    [SerializeField] private GameObject _playerNameView;
+
     public static GameObject LocalPlayerInstance;
 
     bool IsFiring;
@@ -37,15 +39,17 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             Debug.LogError("<Color=Red><b>Missing</b></Color> CameraWork Component on player Prefab.", this);
         }
 
-        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), OnGetAccountInfoSuccess, null);
-    }
-
-    public void Update()
-    {
-        if (photonView.IsMine)
+        if (_playerNameView != null)
         {
-
+            GameObject _uiGo = Instantiate(_playerNameView);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
+        else
+        {
+            Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
+        }
+
+        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), OnGetAccountInfoSuccess, null);
     }
 
     public override void OnLeftRoom()

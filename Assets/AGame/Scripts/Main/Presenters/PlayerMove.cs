@@ -27,9 +27,13 @@ public class PlayerMove : MonoBehaviourPun, IMove
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(0f, 0f, verticalInput);
-        float rotation = horizontalInput * _rotationSpeed * Time.deltaTime;
-        transform.Rotate(0f, rotation, 0f);
-        transform.Translate(movement * _moveSpeed * Time.deltaTime);
+        //if (!_stunned)
+        //{
+        Debug.Log(_moveSpeed);
+            Vector3 movement = new Vector3(0f, 0f, verticalInput);
+            float rotation = horizontalInput * _rotationSpeed * Time.deltaTime;
+            transform.Rotate(0f, rotation, 0f);
+            transform.Translate(movement * _moveSpeed * Time.deltaTime);
+        //}
     }
 }
