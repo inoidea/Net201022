@@ -899,6 +899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usernameField: {fileID: 4612925932181667771}
   _passwordField: {fileID: 4612925931005702823}
+  _enterInGameCanvas: {fileID: 0}
+  _createAccountCanvas: {fileID: 0}
   _mailField: {fileID: 4612925931230103268}
   _createAccountBtn: {fileID: 5517128455772332440}
   _backBtn: {fileID: 5517128455850008063}
@@ -2188,6 +2190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usernameField: {fileID: 8090938157099334032}
   _passwordField: {fileID: 4612925931844614158}
+  _enterInGameCanvas: {fileID: 0}
+  _signInCanvas: {fileID: 0}
   _signInBtn: {fileID: 5517128453948474251}
   _backBtn: {fileID: 5517128455499790358}
   _loadingLabel: {fileID: 7510880210875232791}
@@ -2695,6 +2699,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2656982804787190883, guid: 0ec38cb435b2606448e084272d4ec621, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2908424605321521129, guid: 0ec38cb435b2606448e084272d4ec621, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -2727,7 +2735,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SignIn
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6117271821570372559, guid: 0ec38cb435b2606448e084272d4ec621, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ec38cb435b2606448e084272d4ec621, type: 3}
 --- !u!114 &5223149581937360768 stripped
 MonoBehaviour:

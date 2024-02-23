@@ -84,8 +84,8 @@ public class Checkpoint : MonoBehaviour
     public void SetWindowText(string text)
     {
         // Отправляем событие об изменении содержимого окна всем пользователям
-        object[] content = new object[] { text };
-        PhotonNetwork.RaiseEvent(1, content, new RaiseEventOptions { Receivers = ReceiverGroup.All });
+        //object[] content = new object[] { text };
+        //PhotonNetwork.RaiseEvent(1, content, new RaiseEventOptions { Receivers = ReceiverGroup.All });
     }
 
     private void OnEventReceived(EventData obj)
