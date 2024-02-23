@@ -7,10 +7,10 @@ public class SkillsPresenter : MonoBehaviour
 
     private SkillsView _skillsView;
     private float _skillDuration = 7f;
-    private IMove _move;
+    private IMove _playerMove;
     private float _lowAlpha = 0.3f;
-    
-    public IMove Move { get { return _move; } set { _move = value; } }
+
+    public IMove PlayerMove { get { return _playerMove; } set { _playerMove = value; } }
 
     private void Awake()
     {
@@ -52,10 +52,9 @@ public class SkillsPresenter : MonoBehaviour
         {
             ITimer timer = _timerPool.CreateCallBackTimer("Boost");
 
-            var prevSpeed = _move.Speed;
-            _move.Speed = prevSpeed * 2;
-            _move.Invulnerable = true;
-            _timerPool.RunTimer(timer, _skillDuration, () => { _move.Speed = prevSpeed; _move.Invulnerable = false; });
+            _playerMove.Speed = 30;
+            _playerMove.Invulnerable = true;
+            _timerPool.RunTimer(timer, _skillDuration, () => { _playerMove.Speed = 15; _playerMove.Invulnerable = false; });
         }
 
         ChangeBoostVisible(false);
@@ -75,8 +74,8 @@ public class SkillsPresenter : MonoBehaviour
         if (isAvailable)
         {
             ITimer timer = _timerPool.CreateCallBackTimer("Invulnerability");
-            _move.Invulnerable = true;
-            _timerPool.RunTimer(timer, _skillDuration, () => { _move.Invulnerable = false; });
+            _playerMove.Invulnerable = true;
+            _timerPool.RunTimer(timer, _skillDuration, () => { _playerMove.Invulnerable = false; });
         }
 
         ChangeInvulnerabilityVisible(false);
@@ -95,7 +94,7 @@ public class SkillsPresenter : MonoBehaviour
 
         if (isAvailable)
         {
-            SlowdownPlayers(10);
+            SlowdownPlayers(10, SkillTypes.Slowdown);
         }
 
         ChangeSlowdownVisible(false);
@@ -114,7 +113,7 @@ public class SkillsPresenter : MonoBehaviour
 
         if (isAvailable)
         {
-            SlowdownPlayers(10, 0);
+            SlowdownPlayers(10, SkillTypes.Stun);
         }
 
         ChangeStunVisible(false);
@@ -123,28 +122,24 @@ public class SkillsPresenter : MonoBehaviour
         PhotonNetwork.LocalPlayer.SetCustomProperties(skillProps);
     }
 
-    private void SlowdownPlayers(float radius, float speed = -1)
+    private void SlowdownPlayers(float radius, SkillTypes skillType)
     {
-        if (!_move.PlayerTransform) return;
+        if (!_playerMove.PlayerTransform) return;
 
-        var currentPlayerName = _move.PlayerTransform.name;
-        Collider[] colliders = Physics.OverlapSphere(_move.PlayerTransform.position, radius);
+        var currentPlayerViewID = _playerMove.PlayerViewID;
+        Collider[] colliders = Physics.OverlapSphere(_playerMove.PlayerTransform.position, radius);
 
         foreach (Collider hit in colliders)
         {
             if (hit.TryGetComponent(out IMove playerMove))
             {
-                Debug.Log(playerMove);
+                var playerViewID = playerMove.PlayerViewID;
+                Debug.Log($"currentPlayerViewID {currentPlayerViewID} playerViewID {playerViewID} = {playerViewID != currentPlayerViewID}");
 
-                var playerName = playerMove.PlayerTransform.name;
-
-                if (playerName != currentPlayerName)
+                if (playerViewID != currentPlayerViewID)
                 {
-                    ITimer timer = _timerPool.CreateCallBackTimer($"Slowdown {playerName}");
-
-                    var prevSpeed = playerMove.Speed;
-                    playerMove.Speed = (speed == -1) ? prevSpeed / 2 : speed;
-                    _timerPool.RunTimer(timer, _skillDuration, () => { playerMove.Speed = prevSpeed; });
+                    
+                    playerMove.UseSkillOnPlayer(playerViewID, skillType);
                 }
             }
         }

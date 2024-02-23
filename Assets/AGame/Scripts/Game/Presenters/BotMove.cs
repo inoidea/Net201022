@@ -14,15 +14,18 @@ public class BotMove : MonoBehaviourPun, IMove
     private bool _invulnerable;
     private bool _stunned;
     private int _pointIndex = 0;
+    private AudioSource _audioSource;
 
     public float Speed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public bool Invulnerable { get { return _invulnerable; } set { _invulnerable = value; } }
     public bool Stunned { get { return _stunned; } set { _stunned = value; } }
     public Transform PlayerTransform => transform;
+    public int PlayerViewID => photonView.ViewID;
 
     private void Awake()
     {
         _moveSpeed = _currentMoveSpeed;
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,6 +42,14 @@ public class BotMove : MonoBehaviourPun, IMove
     {
         if (_movePoints.Count > 0 && _pointIndex < _movePoints.Count)
         {
+            if (Speed > 0)
+            {
+                if (!_audioSource.isPlaying)
+                    _audioSource.Play();
+            }
+            else
+                _audioSource.Pause();
+
             var newPoint = _movePoints[_pointIndex].position;
             float distance = Vector3.Distance(transform.position, newPoint);
 
@@ -48,4 +59,6 @@ public class BotMove : MonoBehaviourPun, IMove
                 _pointIndex++;
         }
     }
+
+    public void UseSkillOnPlayer(int targetPlayerID, SkillTypes skillType) { }
 }

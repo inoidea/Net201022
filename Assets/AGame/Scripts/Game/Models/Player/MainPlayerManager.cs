@@ -9,6 +9,7 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private GameObject _playerNameView;
 
     public static GameObject LocalPlayerInstance;
+    public static string _playerId;
 
     bool IsFiring;
     private bool leavingRoom;
@@ -18,6 +19,9 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             LocalPlayerInstance = gameObject;
+
+            var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
+            skillProps.TryAdd(Constants.CHECKPOINTS_PASSED, 0);
         }
 
         DontDestroyOnLoad(gameObject);
@@ -77,7 +81,7 @@ public class MainPlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnGetAccountInfoSuccess(GetAccountInfoResult result)
     {
-        var playFabId = result.AccountInfo.PlayFabId;
+        _playerId = result.AccountInfo.PlayFabId;
 
         //GetUserData(playFabId, USER_DATA_HEALTH);
     }

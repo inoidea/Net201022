@@ -1,6 +1,9 @@
 using Photon.Pun;
+using PlayFab.ClientModels;
+using PlayFab;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Game : MonoBehaviourPun
 {
@@ -16,7 +19,12 @@ public class Game : MonoBehaviourPun
     [SerializeField] private List<Transform> _skillSpawnPoints;
     [SerializeField] private GameObject _skillPrefab;
 
-    [SerializeField] private List<Transform> _checkPoints;
+    [SerializeField] private TMP_Text _victoryPanelText;
+
+    private void Awake()
+    {
+        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), OnGetAccountInfoSuccess, null);
+    }
 
     void Start()
     {
@@ -47,8 +55,23 @@ public class Game : MonoBehaviourPun
         ////}
     }
 
-    private void Update()
+    private void OnGetAccountInfoSuccess(GetAccountInfoResult result)
     {
-        
+        GetUserData(result.AccountInfo.PlayFabId, Constants.USER_DATA_VICTORY);
+    }
+
+    private void GetUserData(string playFabId, string keyData)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest
+        {
+            PlayFabId = playFabId
+        }, result =>
+        {
+            if (result.Data.ContainsKey(Constants.USER_DATA_VICTORY))
+            {
+                _victoryPanelText.text = result.Data[keyData].Value;
+                Debug.Log($"GET {Constants.USER_DATA_VICTORY} - {result.Data[keyData].Value}");
+            }
+        }, result => { Debug.Log($"{Constants.USER_DATA_VICTORY} - ERROR"); });
     }
 }

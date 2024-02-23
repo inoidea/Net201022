@@ -24,7 +24,7 @@ public class Skill : MonoBehaviourPunCallbacks
             {
                 var skillProps = PhotonNetwork.LocalPlayer.CustomProperties;
 
-                _skillsPresenter.Move = other.GetComponent<IMove>();
+                _skillsPresenter.PlayerMove = other.GetComponent<IMove>();
 
                 switch (_type)
                 {

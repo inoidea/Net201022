@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -48,6 +49,27 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} Joined Lobby");
     }
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (roomView.TryGetComponent(out RoomView room))
+        {
+            room.PlayersNames += $"\n{newPlayer.NickName}";
+        }
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        if (roomView.TryGetComponent(out RoomView room))
+        {
+            var playersNames = "";
+
+            foreach (var player in PhotonNetwork.CurrentRoom.Players)
+                playersNames += $"\n{player.Value.NickName}";
+
+            room.PlayersNames = playersNames;
+        }
+    }
+
     public override void OnJoinedRoom()
     {
         loadingScreenView.SetActive(false);
@@ -61,7 +83,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             var playersNames = "";
 
             foreach (var player in PhotonNetwork.CurrentRoom.Players)
-                playersNames += $"{player.Value}\n";
+                playersNames += $"\n{player.Value}";
 
             room.PlayersNames = playersNames;
         }
